@@ -51,6 +51,14 @@ function bullet_collision()
             player1.bullets.splice(i, 1);
             i--;
         }
+        else if (Math.abs(player1.bullets[i].position.x - player2.position.x) < 1 ||
+        Math.abs(player1.bullets[i].position.y - player2.position.y) < 1)
+        {
+            scene.remove(player1.bullets[i]);
+            scene.remove(player2.graphic);
+            player1.bullets.splice(i, 1);
+            i--;
+        }
     }
 
 }
@@ -84,12 +92,12 @@ function player_falling()
 
     for (var i = 0; i < length; i++) {
         element = noGround[i];
-        if (element) {
-            var tileX = (element[0]) | 0;
-            var tileY = (element[1]) | 0;
-            var mtileX = (element[0] + sizeOfTileX) | 0;
-            var mtileY = (element[1] + sizeOfTileY) | 0;
-        }
+        if (element === undefined) continue;
+        
+        var tileX = (element[0] - sizeOfTileX / 2) | 0;
+        var tileY = (element[1] - sizeOfTileY / 2) | 0;
+        var mtileX = (element[0] + sizeOfTileX / 2) | 0;
+        var mtileY = (element[1] + sizeOfTileY / 2) | 0;
 
         if ((x > tileX)
             && (x < mtileX)
