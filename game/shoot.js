@@ -104,7 +104,12 @@ function player_falling()
             && (y > tileY) 
             && (y < mtileY))
         {
-           player1.dead();
+           let lifeNumber = jQuery('#player1 >.life').text();
+           if (lifeNumber > 0) {
+               jQuery('#player1 >.life').text(lifeNumber - 1);
+           }
+           else
+            player1.dead();
         }
     }
 
